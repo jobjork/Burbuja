@@ -10,12 +10,13 @@ class Object:
 
 class Burbuja(Object):
 
-    def __init__(self, _color, _title, _title_size, _text, _media, _radius, position, velocity):
+    def __init__(self, _color, _title, _title_size, _text, _text_size, _media, _radius, position, velocity):
         Object.__init__(self, position, velocity)
         self.color = _color
         self.title = _title
-        self.text = _text
         self.title_size = _title_size
+        self.text = _text
+        self.text_size = _text_size
         self.media = _media
         self.radius = _radius
         self.neighbors = []
@@ -28,19 +29,23 @@ class Burbuja(Object):
         ellipse(self.position.x, self.position.y,
                 self.radius * 2, self.radius * 2)
         self.draw_title()
-        # self.draw_text()
+        self.draw_text()
 
     def draw_title(self):
         fill(0)
         textAlign(CENTER)
         textSize(MIN_TITLE_TEXT_SIZE + self.radius/TEXT_SCALE_FACTOR)
-        text(self.title, self.position.x, self.position.y)
+        y_coordinate = self.position.y - self.radius* 0.1
+        text(self.title, self.position.x, y_coordinate)
     
-    """
     def draw_text(self):
-        textAlign(CENTER)
-        text(self.title, self.position.x, self.position.y)
-    """
+        text_size = MIN_TEXT_SIZE + (self.radius - MIN_RADIUS)/TEXT_SCALE_FACTOR
+        if text_size > 0:
+            fill(0)
+            textAlign(CENTER)
+            y_coordinate = self.position.y + self.radius* 0.1
+            textSize(text_size)
+            text(self.text, self.position.x, y_coordinate)
 
     def move(self, dt):
         Object.move(self, dt)

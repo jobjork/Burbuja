@@ -8,12 +8,13 @@ positions = (PVector(random(WIDTH * 0.9)
 velocities = (PVector(random(-VELOCITY_MAX, VELOCITY_MAX),
                       random(-VELOCITY_MAX, VELOCITY_MAX)) for _ in range(NUM_BURBUJAS))
 c = Color(192, 0, 210)
-b_list = [Burbuja(c, "Spam", DEFAULT_TITLE_TEXT_SIZE, "Monty Python", None, 40, p, v)
+b_list = [Burbuja(c, "Spam", DEFAULT_TITLE_TEXT_SIZE, "Monty Python \n Eggs sausage", DEFAULT_TEXT_SIZE, None, 40, p, v)
           for p, v in zip(positions, velocities)]
 state = State(b_list)
 f = PFont()
 
 def setup():
+    frameRate(400)
     size(WIDTH, HEIGHT)
     f = createFont("Helvetica", 16, True)
     textFont(f)
