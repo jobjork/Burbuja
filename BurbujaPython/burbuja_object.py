@@ -29,21 +29,21 @@ class Burbuja(Object):
         ellipse(self.position.x, self.position.y,
                 self.radius * 2, self.radius * 2)
         self.draw_title()
-        self.draw_text()
+        self.draw_contents()
 
     def draw_title(self):
         fill(0)
         textAlign(CENTER)
-        textSize(MIN_TITLE_TEXT_SIZE + self.radius/TEXT_SCALE_FACTOR)
-        y_coordinate = self.position.y - self.radius* 0.1
+        textSize(MIN_TITLE_TEXT_SIZE + self.radius/TITLE_SCALE_FACTOR)
+        y_coordinate = self.position.y - self.radius* CONTENTS_SHIFT_Y
         text(self.title, self.position.x, y_coordinate)
     
-    def draw_text(self):
-        text_size = MIN_TEXT_SIZE + (self.radius - MIN_RADIUS)/TEXT_SCALE_FACTOR
+    def draw_contents(self):
+        text_size = MIN_TEXT_SIZE + (self.radius - MIN_RADIUS)/CONTENTS_SCALE_FACTOR
         if text_size > 0:
             fill(0)
             textAlign(CENTER)
-            y_coordinate = self.position.y + self.radius* 0.1
+            y_coordinate = self.position.y + self.radius* CONTENTS_SHIFT_Y
             textSize(text_size)
             text(self.text, self.position.x, y_coordinate)
 
@@ -98,7 +98,6 @@ class Burbuja(Object):
             self.radius -= RADIUS_GROWTH
         self.radius = constrain(self.radius, MIN_RADIUS, MAX_RADIUS)
         
-
     @staticmethod
     def check_collisions(_b_list):
         for b in _b_list:
