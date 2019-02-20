@@ -48,7 +48,7 @@ class State:
             self.state = StateCollection.next_state(self.state)   
             self.millis_of_last_switch = millis()
             
-    def resize_ball_in_list(self, b_list, ):
+    def resize_ball_in_list(self, b_list):
         if self.state == 2 and not self.ball_locked:
             self.ball_count +=1
             self.ball_locked = True
